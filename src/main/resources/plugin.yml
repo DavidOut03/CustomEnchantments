@@ -1,0 +1,4 @@
+name: CustomEnchants
+version: '${project.version}'
+main: com.davidout.customenchants.Main
+api-version: 1.18
