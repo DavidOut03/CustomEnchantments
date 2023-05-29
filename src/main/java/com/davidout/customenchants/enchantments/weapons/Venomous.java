@@ -25,6 +25,7 @@ public class Venomous extends CustomEnchantment {
     public void onAction(Event event) {
         if(!(event instanceof EntityDamageByEntityEvent)) return;
         EntityDamageByEntityEvent e = (EntityDamageByEntityEvent) event;
+        if(!(e.getDamager() instanceof LivingEntity) || !(e.getEntity() instanceof LivingEntity)) return;
         LivingEntity da = (LivingEntity) e.getDamager();
         LivingEntity et = (LivingEntity) e.getEntity();
         if(da.getEquipment().getItemInHand() == null) return;
