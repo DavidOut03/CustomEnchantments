@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.all;
 
 import com.davidout.api.enchantment.CustomEnchantment;
+import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -8,10 +9,11 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class AutoRepair extends CustomEnchantment {
     public AutoRepair(String name, int maxLevel) {
-        super(name, maxLevel);
+        super(name, maxLevel, EnchantmentTarget.BREAKABLE);
     }
 
     @Override
@@ -25,12 +27,16 @@ public class AutoRepair extends CustomEnchantment {
         PlayerMoveEvent e = (PlayerMoveEvent) event;
         Player player = e.getPlayer();
 
-        if(!(e.getTo().getBlockX() != e.getFrom().getBlockX() || e.getTo().getBlockZ() != e.getFrom().getBlockZ())) return;
-
-
+        if(!(e.getTo().getBlockX() != e.getFrom().getBlockX() || e.getTo().getBlockZ() != e.getFrom().getBlockZ()) || player.isFlying()) return;
         for (ItemStack item : player.getInventory().getContents()) {
             if(item == null || !item.containsEnchantment(this)) continue;
-            item.setDurability((short) ( item.getDurability() -  .01));
+            int enchantmentLevel = item.getEnchantmentLevel(this);
+            double restorationChance = 0.2 * enchantmentLevel;
+            double random = Math.random();
+
+            if (random >= restorationChance) continue;
+                item.setDurability((short) ( item.getDurability() -  .01));
+
         }
     }
 }

@@ -12,8 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Speed extends CustomEnchantment {
-    public Speed(String name, int maxLevel, EnchantmentTarget armorFeet) {
-        super(name, maxLevel);
+    public Speed(String name, int maxLevel) {
+        super(name, maxLevel, EnchantmentTarget.ARMOR_FEET);
     }
 
     @Override

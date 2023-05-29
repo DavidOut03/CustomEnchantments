@@ -3,14 +3,8 @@ package com.davidout.customenchants;
 import com.davidout.api.MinecraftPlugin;
 import com.davidout.api.command.CustomCommand;
 import com.davidout.api.utillity.TextUtils;
-import com.davidout.customenchants.enchantments.all.AutoRepair;
-import com.davidout.customenchants.enchantments.armor.FlameGuard;
-import com.davidout.customenchants.enchantments.armor.Speed;
-import com.davidout.customenchants.enchantments.tools.AutoSmelt;
-import com.davidout.customenchants.enchantments.tools.Lumberjack;
-import com.davidout.customenchants.enchantments.tools.Multiblock;
+import com.davidout.customenchants.enchantments.CustomEnchantmentManager;
 import org.bukkit.Bukkit;
-import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.event.Listener;
 
 import java.util.Arrays;
@@ -42,19 +36,17 @@ public final class Main extends MinecraftPlugin {
 
     public void registerEnchantments() {
         Arrays.asList(
-                // enchantment for all items
-                new AutoRepair("autorepair", 1),
-
-                // enchantments for tools
-                new Multiblock("multiblock", 3, EnchantmentTarget.TOOL),
-                new Lumberjack("lumberjack", 1),
-                new AutoSmelt("autosmelt", 1),
-
-
-                // enchantments for armor
-                new Speed("speed", 2, EnchantmentTarget.ARMOR_FEET),
-                new FlameGuard("flame_guard", 1)
-
+                CustomEnchantmentManager.telepathy,
+                CustomEnchantmentManager.autoRepair,
+                CustomEnchantmentManager.autoSmelt,
+                CustomEnchantmentManager.speed,
+                CustomEnchantmentManager.flameguard,
+                CustomEnchantmentManager.multiblock,
+                CustomEnchantmentManager.lumberjack,
+                CustomEnchantmentManager.experience,
+                CustomEnchantmentManager.quickHarvest,
+                CustomEnchantmentManager.jellyLegs,
+                CustomEnchantmentManager.venomoues
         ).forEach(customEnchantment -> {
             getEnchantmentManager().addEnchantment(customEnchantment);
         });

@@ -24,9 +24,6 @@ public class FlameGuard extends CustomEnchantment {
 
         @Override
         public void onAction(Event event) {
-
-            System.out.println("test");
-
             if(event instanceof ArmorEquipEvent) {
                 ArmorEquipEvent e = (ArmorEquipEvent) event;
                 if(!e.getEquipedArmor().containsEnchantment(this)) return;

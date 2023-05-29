@@ -2,8 +2,10 @@ package com.davidout.customenchants.enchantments.tools;
 
 import com.davidout.api.enchantment.CustomEnchantment;
 import com.davidout.api.utillity.TextUtils;
+import com.davidout.customenchants.enchantments.CustomEnchantmentManager;
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -14,8 +16,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Multiblock extends CustomEnchantment {
-    public Multiblock(String name, int maxLevel, EnchantmentTarget tool) {
-        super(name, maxLevel);
+    public Multiblock(String name, int maxLevel) {
+        super(name, maxLevel, EnchantmentTarget.TOOL);
     }
 
     @Override
@@ -32,94 +34,33 @@ public class Multiblock extends CustomEnchantment {
         if(!player.getInventory().getItemInMainHand().getType().toString().toLowerCase().contains("pickaxe")) return;
         if(!player.getInventory().getItemInMainHand().containsEnchantment(this)) return;
         int level = player.getInventory().getItemInMainHand().getEnchantmentLevel(this);
-
-        breakBlocks(player, blockBreakEvent.getBlock(), player.getInventory().getItemInMainHand(), 1);
-    }
-
-    private void breakBlocks(Player p, Block brokenBlock, ItemStack itemStack, int level) {
-
+        CustomEnchantmentManager.breakBlock(blockBreakEvent.getBlock(), player, player.getItemInHand());
+        breakArea(player, blockBreakEvent.getBlock(), level);
     }
 
 
+    private void breakArea(Player player, Block targetBlock, int radius) {
+        BlockFace playerFacing = player.getFacing();
 
-//    public static void setTextBelowName(Player p, String text) {
-//        Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
-//        Objective objective = (scoreboard.getObjective("belowName") == null) ? scoreboard.registerNewObjective("belowName", "dummy", text) : scoreboard.getObjective("belowName");
-//        objective.setDisplaySlot(DisplaySlot.BELOW_NAME);
-//
-//        List<String> oldLines = new ArrayList<>(objective.getScoreboard().getEntries());
-//
-//        String teamName = "belowName_" + p.getName();
-//
-//        Team team = (scoreboard.getTeam(teamName) == null) ? scoreboard.registerNewTeam(teamName) : scoreboard.getTeam(teamName);
-//        team.setPrefix(getPrefix(text));
-//        team.setSuffix(getSuffix(text));
-//        team.addEntry(getEntry(text));
-//
-//        if(!oldLines.isEmpty() && oldLines.get(0) != null) scoreboard.resetScores(oldLines.get(0));
-//
-//        objective.setDisplayName(TextUtils.formatColorCodes(text));
-//    }
+        for(int a = -radius; a <= radius; a++) {
+            for(int b = -radius; b <= radius; b++) {
 
-    private static String getPrefix(String line) {
-        String lineText = (line == null) ? "" : TextUtils.formatColorCodes(line);
-        return (lineText.length() <= 16) ? "" : lineText.substring(0, 16);
-    }
+                Block currentBlock = (playerIsLookingUpOrDown(player)) ? targetBlock.getWorld().getBlockAt(targetBlock.getX() + a, targetBlock.getY(), targetBlock.getZ() + b) :
+                                     (playerFacing == BlockFace.EAST || playerFacing == BlockFace.WEST) ? targetBlock.getWorld().getBlockAt(targetBlock.getX(), targetBlock.getY() + a, targetBlock.getZ() + b) :
+                                                                                                          targetBlock.getWorld().getBlockAt(targetBlock.getX() + a, targetBlock.getY() + b, targetBlock.getZ());
 
-    private static String getEntry(String line) {
-        String lineText = (line == null) ? "" : TextUtils.formatColorCodes(line);
-        return (lineText.length() <= 16) ? lineText : (lineText.length() <= 32) ? lineText.substring(15, lineText.length()) : lineText.substring(15, 31);
-    }
-
-    private static String getSuffix(String line) {
-        String lineText = (line == null) ? "" : TextUtils.formatColorCodes(line);
-        return (lineText.length() <= 32) ? "" : lineText.substring(15, 31);
-    }
-
-
-    public void break3x3x1Blocks(World world, int centerX, int centerY, int centerZ, ItemStack itemStack) {
-        breakBlocksInDirection(world, centerX, centerY, centerZ, "left", itemStack);
-        breakBlocksInDirection(world, centerX, centerY, centerZ, "right", itemStack);
-        breakBlocksInDirection(world, centerX, centerY, centerZ, "up", itemStack);
-        breakBlocksInDirection(world, centerX, centerY, centerZ, "down", itemStack);
-    }
-
-    private void breakBlocksInDirection(World world, int centerX, int centerY, int centerZ, String direction, ItemStack itemStack) {
-        int minX = centerX - 1;
-        int maxX = centerX + 1;
-        int minY = centerY;
-        int maxY = centerY;
-        int minZ = centerZ;
-        int maxZ = centerZ;
-
-        switch (direction.toLowerCase()) {
-            case "left":
-                maxX--;
-                break;
-            case "right":
-                minX++;
-                break;
-            case "up":
-                maxY++;
-                break;
-            case "down":
-                minY--;
-                break;
-            default:
-                Bukkit.getLogger().warning("Invalid direction provided: " + direction);
-                return;
-        }
-
-        for (int x = minX; x <= maxX; x++) {
-            for (int y = minY; y <= maxY; y++) {
-                for (int z = minZ; z <= maxZ; z++) {
-                    Block block = world.getBlockAt(x, y, z);
-                    if (block.getType() != Material.AIR) {
-                        block.breakNaturally(itemStack);
-                    }
-                }
+                if(currentBlock.equals(targetBlock)) continue;
+                CustomEnchantmentManager.breakBlock(currentBlock, player, player.getItemInHand());
             }
         }
+
     }
+
+    private boolean playerIsLookingUpOrDown(Player p) {
+        float pitch = p.getLocation().getPitch();
+        return pitch <= -45 || pitch >= 45;
+    }
+
+
 
 }
