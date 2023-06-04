@@ -1,10 +1,10 @@
 package com.davidout.customenchants.enchantments.tools;
 
-import com.davidout.api.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.enums.EnchantmentTarget;
 import com.davidout.customenchants.enchantments.CustomEnchantmentManager;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -13,7 +13,7 @@ import java.util.*;
 
 public class Lumberjack extends CustomEnchantment {
     public Lumberjack(String name, int maxLevel) {
-        super(name, maxLevel, EnchantmentTarget.TOOL);
+        super(name, maxLevel, EnchantmentTarget.AXE);
     }
 
     @Override

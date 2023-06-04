@@ -1,4 +1,4 @@
-package com.davidout.customenchants.enchantments.all;
+package com.davidout.customenchants.enchantments.armor;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
 import com.davidout.api.enums.EnchantmentTarget;
@@ -9,11 +9,10 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
-public class AutoRepair extends CustomEnchantment {
-    public AutoRepair(String name, int maxLevel) {
-        super(name, maxLevel, EnchantmentTarget.ALL);
+public class Harmony extends CustomEnchantment {
+    public Harmony(String name, int maxLevel) {
+        super(name, maxLevel, EnchantmentTarget.CHESTPLATE);
     }
 
     @Override
@@ -28,15 +27,18 @@ public class AutoRepair extends CustomEnchantment {
         Player player = e.getPlayer();
 
         if(!(e.getTo().getBlockX() != e.getFrom().getBlockX() || e.getTo().getBlockZ() != e.getFrom().getBlockZ()) || player.isFlying()) return;
-        for (ItemStack item : player.getInventory().getContents()) {
-            if(item == null || !item.containsEnchantment(this)) continue;
+        ItemStack item = player.getInventory().getChestplate();
+            if(item == null || !item.containsEnchantment(this)) return;
             int enchantmentLevel = item.getEnchantmentLevel(this);
             double restorationChance = 0.2 * enchantmentLevel;
             double random = Math.random();
 
-            if (random >= restorationChance) continue;
-                item.setDurability((short) ( item.getDurability() -  .01));
+            if (random >= restorationChance) return;
+            double newHealth = (player.getHealth() == 20) ? 20 : player.getHealth() + item.getEnchantmentLevel(this);
+            int newFood = (player.getFoodLevel() == 20) ? 20 : player.getFoodLevel() + item.getEnchantmentLevel(this);
 
+            player.setHealth(newHealth);
+            player.setFoodLevel(newFood);
         }
-    }
 }
+

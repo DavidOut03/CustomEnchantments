@@ -1,6 +1,6 @@
 package com.davidout.customenchants.enchantments.tools;
 
-import com.davidout.api.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.CustomEnchantment;
 import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerExpChangeEvent;
 

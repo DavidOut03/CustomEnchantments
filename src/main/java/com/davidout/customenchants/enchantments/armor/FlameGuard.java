@@ -1,9 +1,9 @@
 package com.davidout.customenchants.enchantments.armor;
 
-import com.davidout.api.customevent.ArmorDequipEvent;
-import com.davidout.api.customevent.ArmorEquipEvent;
-import com.davidout.api.enchantment.CustomEnchantment;
-import org.bukkit.enchantments.EnchantmentTarget;
+import com.davidout.api.custom.event.ArmorDequipEvent;
+import com.davidout.api.custom.event.ArmorEquipEvent;
+import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.enums.EnchantmentTarget;
 import org.bukkit.event.Event;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -14,7 +14,7 @@ import java.util.List;
 public class FlameGuard extends CustomEnchantment {
 
         public FlameGuard(String name, int maxLevel) {
-            super(name, maxLevel, EnchantmentTarget.ARMOR_LEGS);
+            super(name, maxLevel, EnchantmentTarget.LEGGINGS);
         }
 
         @Override

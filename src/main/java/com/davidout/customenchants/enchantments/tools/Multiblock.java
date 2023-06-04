@@ -1,12 +1,12 @@
 package com.davidout.customenchants.enchantments.tools;
 
-import com.davidout.api.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.enums.EnchantmentTarget;
 import com.davidout.api.utillity.TextUtils;
 import com.davidout.customenchants.enchantments.CustomEnchantmentManager;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -17,7 +17,7 @@ import java.util.List;
 
 public class Multiblock extends CustomEnchantment {
     public Multiblock(String name, int maxLevel) {
-        super(name, maxLevel, EnchantmentTarget.TOOL);
+        super(name, maxLevel, EnchantmentTarget.PICKAXE);
     }
 
     @Override

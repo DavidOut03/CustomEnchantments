@@ -1,10 +1,10 @@
 package com.davidout.customenchants.enchantments.tools;
 
-import com.davidout.api.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.enums.EnchantmentTarget;
 import com.davidout.customenchants.enchantments.CustomEnchantmentManager;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -31,7 +31,7 @@ public class AutoSmelt extends CustomEnchantment {
     };
 
     public AutoSmelt(String name, int maxLevel) {
-        super(name, maxLevel, EnchantmentTarget.TOOL);
+        super(name, maxLevel, EnchantmentTarget.PICKAXE);
     }
 
     @Override

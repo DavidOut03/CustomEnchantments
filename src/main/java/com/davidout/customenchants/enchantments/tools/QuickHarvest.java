@@ -1,13 +1,13 @@
 package com.davidout.customenchants.enchantments.tools;
 
-import com.davidout.api.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.enums.EnchantmentTarget;
 import com.davidout.customenchants.Main;
 import com.davidout.customenchants.enchantments.CustomEnchantmentManager;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.data.Ageable;
-import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
 
@@ -17,7 +17,7 @@ import java.util.List;
 
 public class QuickHarvest extends CustomEnchantment {
     public QuickHarvest(String name, int maxLevel) {
-        super(name, maxLevel, EnchantmentTarget.TOOL);
+        super(name, maxLevel, EnchantmentTarget.HOE);
     }
 
     @Override

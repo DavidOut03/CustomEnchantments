@@ -1,11 +1,15 @@
 package com.davidout.customenchants.enchantments;
 
-import com.davidout.api.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.CustomEnchantment;
 import com.davidout.customenchants.enchantments.all.AutoRepair;
+import com.davidout.customenchants.enchantments.all.Soulbound;
 import com.davidout.customenchants.enchantments.armor.FlameGuard;
+import com.davidout.customenchants.enchantments.armor.Harmony;
 import com.davidout.customenchants.enchantments.armor.JellyLegs;
 import com.davidout.customenchants.enchantments.armor.Speed;
 import com.davidout.customenchants.enchantments.tools.*;
+import com.davidout.customenchants.enchantments.weapons.AttackSpeed;
+import com.davidout.customenchants.enchantments.weapons.SoulReaper;
 import com.davidout.customenchants.enchantments.weapons.Venomous;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -19,8 +23,12 @@ import java.util.List;
 
 public class CustomEnchantmentManager {
 
-    // tools
+    // all
     public static final CustomEnchantment autoRepair = new AutoRepair("autorepair", 3);
+    public static final CustomEnchantment soulBound = new Soulbound("soulbound", 2);
+
+    // tools
+
     public static final CustomEnchantment multiblock = new Multiblock("multiblock", 2);
     public static final CustomEnchantment lumberjack = new Lumberjack("lumberjack", 1);
     public static final CustomEnchantment autoSmelt = new AutoSmelt("autosmelt", 1);
@@ -33,9 +41,12 @@ public class CustomEnchantmentManager {
     public static final CustomEnchantment speed = new Speed("speed", 1);
     public static final CustomEnchantment flameguard = new FlameGuard("flame_guard", 1);
     public static final CustomEnchantment jellyLegs = new JellyLegs("jelly_legs", 1);
+    public static final CustomEnchantment harmony = new Harmony("harmony", 2);
 
     // weapons
-    public static final CustomEnchantment venomoues = new Venomous("venomous", 2);
+    public static final CustomEnchantment venomous = new Venomous("venomous", 2);
+    public static final CustomEnchantment attackSpeed = new AttackSpeed("attack_speed", 3);
+    public static final CustomEnchantment soulReaper = new SoulReaper("soul_reaper", 4);
 
 
 

@@ -1,9 +1,9 @@
 package com.davidout.customenchants.enchantments.armor;
 
-import com.davidout.api.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.enums.EnchantmentTarget;
 import org.bukkit.Material;
 import org.bukkit.Sound;
-import org.bukkit.enchantments.EnchantmentTarget;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -18,7 +18,7 @@ import java.util.List;
 
 public class JellyLegs extends CustomEnchantment {
     public JellyLegs(String name, int maxLevel) {
-        super(name, maxLevel, EnchantmentTarget.ARMOR_FEET);
+        super(name, maxLevel, EnchantmentTarget.LEGGINGS);
     }
 
     @Override

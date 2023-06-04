@@ -1,7 +1,7 @@
 package com.davidout.customenchants.enchantments.weapons;
 
-import com.davidout.api.enchantment.CustomEnchantment;
-import org.bukkit.enchantments.EnchantmentTarget;
+import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.enums.EnchantmentTarget;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Venomous extends CustomEnchantment {
     public Venomous(String name, int maxLevel) {
-        super(name, maxLevel, EnchantmentTarget.WEAPON);
+        super(name, maxLevel, EnchantmentTarget.SWORD);
     }
 
     @Override
