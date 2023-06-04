@@ -5,10 +5,16 @@ import com.davidout.api.custom.command.CustomCommand;
 import com.davidout.api.custom.file.PluginFile;
 import com.davidout.api.utillity.TextUtils;
 import com.davidout.customenchants.enchantments.CustomEnchantmentManager;
+import com.davidout.customenchants.enchantments.Enchanter;
 import com.davidout.customenchants.gui.EnchanterGUI;
+import com.davidout.customenchants.gui.EnchantmentsGUI;
 import com.davidout.customenchants.listener.ClickListener;
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,6 +27,7 @@ public final class Main extends MinecraftPlugin {
 
        registerEnchantments();
        registerGUIS();
+       registerCustomRecipes();
     }
 
     @Override
@@ -30,7 +37,7 @@ public final class Main extends MinecraftPlugin {
 
     @Override
     public List<Listener> registerEvents() {
-        return Arrays.asList(new TestListener(), new ClickListener());
+        return Arrays.asList(new TestListener(), new ClickListener(), new EnchanterGUI());
     }
 
     @Override
@@ -70,5 +77,23 @@ public final class Main extends MinecraftPlugin {
 
     public void registerGUIS() {
         getGuiManager().addGUI(new EnchanterGUI());
+        getGuiManager().addGUI(new EnchantmentsGUI());
+    }
+
+    public void registerCustomRecipes() {
+        ItemStack keyResult = Enchanter.getKeyItem();
+        ShapedRecipe keyRecipe = new ShapedRecipe(new NamespacedKey(getPlugin(), "keyRecipe"), keyResult);
+        keyRecipe.shape(
+                "---",
+                "+*+",
+                "==="
+        );
+
+        keyRecipe.setIngredient('-', Material.PAPER);
+        keyRecipe.setIngredient('+', Material.LAPIS_LAZULI);
+        keyRecipe.setIngredient('*', Material.DIAMOND);
+        keyRecipe.setIngredient('=', Material.LEATHER);
+
+        Bukkit.addRecipe(keyRecipe);
     }
 }

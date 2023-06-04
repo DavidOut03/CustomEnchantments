@@ -1,5 +1,6 @@
 package com.davidout.customenchants;
 
+import com.davidout.customenchants.enchantments.Enchanter;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -21,9 +22,7 @@ public class TestListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent e) {
-
-
-
+        e.getPlayer().getInventory().addItem(Enchanter.getKeyItem());
     }
 
     @EventHandler

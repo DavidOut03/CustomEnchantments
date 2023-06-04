@@ -26,10 +26,12 @@ public class Venomous extends CustomEnchantment {
         if(!(event instanceof EntityDamageByEntityEvent)) return;
         EntityDamageByEntityEvent e = (EntityDamageByEntityEvent) event;
         if(!(e.getDamager() instanceof LivingEntity) || !(e.getEntity() instanceof LivingEntity)) return;
+
         LivingEntity da = (LivingEntity) e.getDamager();
         LivingEntity et = (LivingEntity) e.getEntity();
+
         if(da.getEquipment().getItemInHand() == null) return;
         if(!da.getEquipment().getItemInHand().containsEnchantment(this)) return;
-        et.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 5, da.getEquipment().getItemInHand().getEnchantmentLevel(this) - 1));
+        et.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 40, da.getEquipment().getItemInHand().getEnchantmentLevel(this) - 1));
      }
 }
