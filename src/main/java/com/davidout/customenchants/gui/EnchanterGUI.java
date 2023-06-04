@@ -39,10 +39,10 @@ public class EnchanterGUI extends GUI implements Listener {
 
         setItem(13, ItemCreator.createItem(Material.BOOKSHELF, "&d&lEnchantment list", Arrays.asList("&7See all the possible enchantments.")));
 
-        ItemStack epic = (shelveCount >= 7) ? (player.getLevel() >= 20 || player.getGameMode().equals(GameMode.CREATIVE)) ? ItemCreator.createItem(Material.BLUE_STAINED_GLASS_PANE, "&9&lEpic Enchantment", Arrays.asList("&7Click to enchant the selected item.","&eEXP Cost: 20 levels")) : ItemCreator.createItem(Material.GRAY_STAINED_GLASS_PANE, "&9&lEpic Enchantment", Arrays.asList("&cYou don't have enough experience to enchant.")) : ItemCreator.createItem(Material.RED_STAINED_GLASS_PANE, "&c&lLocked", Arrays.asList("&cPlace more bookshelves to unlock this enchantment type."));
-        ItemStack legendary = (shelveCount >= 16) ? (player.getLevel() >= 30 || player.getGameMode().equals(GameMode.CREATIVE)) ? ItemCreator.createItem(Material.ORANGE_STAINED_GLASS_PANE, "&6&lLegendary Enchantment", Arrays.asList("&7Click to enchant the selected item.","&eEXP Cost: 30 levels")) : ItemCreator.createItem(Material.GRAY_STAINED_GLASS_PANE, "&9&lEpic Enchantment", Arrays.asList("&cYou don't have enough experience to enchant.")) : ItemCreator.createItem(Material.RED_STAINED_GLASS_PANE, "&c&lLocked", Arrays.asList("&cPlace more bookshelves to unlock this enchantment type."));
+        ItemStack epic = (shelveCount >= 7) ? (player.getLevel() >= 20 || player.getGameMode().equals(GameMode.CREATIVE)) ? ItemCreator.createItem(Material.BLUE_STAINED_GLASS_PANE, "&9&lEpic Enchantment", Arrays.asList("&7Click to enchant the selected item."," ", "&eEXP Cost: 20 levels")) : ItemCreator.createItem(Material.GRAY_STAINED_GLASS_PANE, "&9&lEpic Enchantment", Arrays.asList("&cYou don't have enough experience to enchant.")) : ItemCreator.createItem(Material.RED_STAINED_GLASS_PANE, "&c&lLocked", Arrays.asList("&cPlace more bookshelves to unlock this enchantment type."));
+        ItemStack legendary = (shelveCount >= 16) ? (player.getLevel() >= 30 || player.getGameMode().equals(GameMode.CREATIVE)) ? ItemCreator.createItem(Material.ORANGE_STAINED_GLASS_PANE, "&6&lLegendary Enchantment", Arrays.asList("&7Click to enchant the selected item."," ","&eEXP Cost: 30 levels")) : ItemCreator.createItem(Material.GRAY_STAINED_GLASS_PANE, "&9&lEpic Enchantment", Arrays.asList("&cYou don't have enough experience to enchant.")) : ItemCreator.createItem(Material.RED_STAINED_GLASS_PANE, "&c&lLocked", Arrays.asList("&cPlace more bookshelves to unlock this enchantment type."));
 
-        setItem(21, (player.getLevel() >= 10 || player.getGameMode().equals(GameMode.CREATIVE)) ? ItemCreator.createItem(Material.LIME_STAINED_GLASS_PANE, "&a&lCommon Enchantment", Arrays.asList("&7Click to enchant the selected item.","&eEXP Cost: 10 levels")) : ItemCreator.createItem(Material.GRAY_STAINED_GLASS_PANE, "&a&lCommon Enchantment", Arrays.asList("&cYou don't have enough experience to enchant.")));
+        setItem(21, (player.getLevel() >= 10 || player.getGameMode().equals(GameMode.CREATIVE)) ? ItemCreator.createItem(Material.LIME_STAINED_GLASS_PANE, "&a&lCommon Enchantment", Arrays.asList("&7Click to enchant the selected item."," ","&eEXP Cost: 10 levels")) : ItemCreator.createItem(Material.GRAY_STAINED_GLASS_PANE, "&a&lCommon Enchantment", Arrays.asList("&cYou don't have enough experience to enchant.")));
         setItem(22, epic);
         setItem(23, legendary);
 
@@ -94,16 +94,19 @@ public class EnchanterGUI extends GUI implements Listener {
             if(clicked.getType().equals(Material.LIME_STAINED_GLASS_PANE)) {
                 if(player.getLevel() < 10 && !player.getGameMode().equals(GameMode.CREATIVE)) return;
                 Enchanter.enchantItem(EnchantmentType.COMMON, enchantItem);
+                player.setLevel(player.getLevel() - 10);
             }
 
             if(clicked.getType().equals(Material.BLUE_STAINED_GLASS_PANE)) {
                 if(player.getLevel() < 20 && !player.getGameMode().equals(GameMode.CREATIVE)) return;
                 Enchanter.enchantItem(EnchantmentType.EPIC, enchantItem);
+                player.setLevel(player.getLevel() - 20);
             }
 
             if(clicked.getType().equals(Material.ORANGE_STAINED_GLASS_PANE)) {
                 if(player.getLevel() < 30 && !player.getGameMode().equals(GameMode.CREATIVE)) return;
                 Enchanter.enchantItem(EnchantmentType.LEGENDARY, enchantItem);
+                player.setLevel(player.getLevel() - 30);
             }
 
             e.getInventory().setItem(40, enchantItem);
