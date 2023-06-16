@@ -2,3 +2,8 @@ name: CustomEnchants
 version: '${project.version}'
 main: com.davidout.customenchants.Main
 api-version: 1.18
+commands:
+  keyrecipe:
+    aliases:
+      - kr
+    description: Get the recipe of the enchantment key.

@@ -33,17 +33,6 @@ import java.util.Map;
 public class ClickListener implements Listener {
 
     @EventHandler
-    public void onJoin(PlayerJoinEvent e) {
-        ItemStack chest = ItemCreator.createItem(Material.DIAMOND_CHESTPLATE);
-        ItemStack sword = ItemCreator.createItem(Material.DIAMOND_SWORD);
-
-       EnchantmentManager.addCustomEnchantment(chest, "soulbound", 1);
-       EnchantmentManager.addCustomEnchantment(sword, "soulbound", 2);
-
-       e.getPlayer().getInventory().addItem(chest, sword);
-    }
-
-    @EventHandler
     public void onClick(PlayerInteractEvent e) {
         Block block = e.getClickedBlock();
         ItemStack item = e.getItem();

@@ -4,10 +4,12 @@ import com.davidout.api.MinecraftPlugin;
 import com.davidout.api.custom.command.CustomCommand;
 import com.davidout.api.custom.file.PluginFile;
 import com.davidout.api.utillity.TextUtils;
+import com.davidout.customenchants.commands.KeyRecipeCommand;
 import com.davidout.customenchants.enchantments.CustomEnchantmentManager;
 import com.davidout.customenchants.enchantments.Enchanter;
 import com.davidout.customenchants.gui.EnchanterGUI;
 import com.davidout.customenchants.gui.EnchantmentsGUI;
+import com.davidout.customenchants.gui.RecipeGui;
 import com.davidout.customenchants.listener.ClickListener;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -37,12 +39,12 @@ public final class Main extends MinecraftPlugin {
 
     @Override
     public List<Listener> registerEvents() {
-        return Arrays.asList(new TestListener(), new ClickListener(), new EnchanterGUI());
+        return Arrays.asList(new ClickListener(), new EnchanterGUI());
     }
 
     @Override
     public List<CustomCommand> registerCommands() {
-        return Arrays.asList();
+        return Arrays.asList(new KeyRecipeCommand());
     }
 
     @Override
@@ -78,6 +80,7 @@ public final class Main extends MinecraftPlugin {
     public void registerGUIS() {
         getGuiManager().addGUI(new EnchanterGUI());
         getGuiManager().addGUI(new EnchantmentsGUI());
+        getGuiManager().addGUI(new RecipeGui());
     }
 
     public void registerCustomRecipes() {

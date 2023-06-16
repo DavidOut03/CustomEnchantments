@@ -89,6 +89,7 @@ public class EnchanterGUI extends GUI implements Listener {
 
 
         if(clicked.getType().name().toLowerCase().endsWith("_glass_pane")) {
+            if(enchantItem.getType().equals(Material.ITEM_FRAME)) return;
             enchantItem = (enchantItem.getType() == Material.BOOK) ? Enchanter.getBookItem() : enchantItem;
 
             if(clicked.getType().equals(Material.LIME_STAINED_GLASS_PANE)) {

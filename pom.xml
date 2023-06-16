@@ -17,6 +17,7 @@
     </properties>
 
     <build>
+        <finalName>Custom Enchants</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -40,7 +41,7 @@
                         <configuration>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                             <shadedArtifactAttached>true</shadedArtifactAttached>
-                            <outputDirectory>Z:\Minecraft Development\server\plugins</outputDirectory>
+                            <outputDirectory>D:\Minecraft Development\server\plugins</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
