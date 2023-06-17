@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.armor;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -28,7 +29,7 @@ public class Harmony extends CustomEnchantment {
 
         if(!(e.getTo().getBlockX() != e.getFrom().getBlockX() || e.getTo().getBlockZ() != e.getFrom().getBlockZ()) || player.isFlying()) return;
         ItemStack item = player.getInventory().getChestplate();
-            if(item == null || !item.containsEnchantment(this)) return;
+            if(!EnchantmentManager.containsEnchantment(this, item)) return;
             int enchantmentLevel = item.getEnchantmentLevel(this);
             double restorationChance = 0.2 * enchantmentLevel;
             double random = Math.random();

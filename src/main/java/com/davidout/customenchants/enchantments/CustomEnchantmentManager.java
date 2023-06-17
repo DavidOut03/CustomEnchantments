@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.customenchants.enchantments.all.AutoRepair;
 import com.davidout.customenchants.enchantments.all.Soulbound;
 import com.davidout.customenchants.enchantments.armor.FlameGuard;
@@ -10,6 +11,7 @@ import com.davidout.customenchants.enchantments.armor.Speed;
 import com.davidout.customenchants.enchantments.tools.*;
 import com.davidout.customenchants.enchantments.weapons.AttackSpeed;
 import com.davidout.customenchants.enchantments.weapons.SoulReaper;
+import com.davidout.customenchants.enchantments.weapons.Trophy;
 import com.davidout.customenchants.enchantments.weapons.Venomous;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -47,17 +49,16 @@ public class CustomEnchantmentManager {
     public static final CustomEnchantment venomous = new Venomous("venomous", 2);
     public static final CustomEnchantment attackSpeed = new AttackSpeed("attack_speed", 3);
     public static final CustomEnchantment soulReaper = new SoulReaper("soul_reaper", 4);
+    public static final CustomEnchantment trophy = new Trophy("trophy", 3);
 
 
 
     public static void breakBlock(Block block, Player player, ItemStack tool) {
-        List<ItemStack> drops =  (tool.containsEnchantment(autoSmelt))? AutoSmelt.breakItemWithAutoSmelt(block, player): new ArrayList<>(block.getDrops(tool));
+        List<ItemStack> drops =  (EnchantmentManager.containsEnchantment(autoSmelt, tool))? AutoSmelt.breakItemWithAutoSmelt(block, player): new ArrayList<>(block.getDrops(tool));
         block.setType(Material.AIR);
 
         if(tool != null) tool.setDurability((short) (tool.getDurability() + getUnbreakingDamage(tool.getEnchantmentLevel(Enchantment.DURABILITY))));
-
-
-        if(tool.containsEnchantment(telepathy)) {
+        if(EnchantmentManager.containsEnchantment(telepathy, tool)) {
             drops.forEach(itemStack -> Telepathy.teleportDropToInventory(block.getLocation(), itemStack, player));
             return;
         }

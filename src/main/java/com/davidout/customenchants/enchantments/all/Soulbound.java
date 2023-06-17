@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.all;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.customenchants.Main;
 import org.bukkit.Material;
 import org.bukkit.event.Event;
@@ -31,7 +32,7 @@ public class Soulbound extends CustomEnchantment {
             List<ItemStack> returned = new ArrayList<>();
 
             drops.forEach(itemStack -> {
-                if(!itemStack.containsEnchantment(this)) return;
+                if(!EnchantmentManager.containsEnchantment(this, itemStack)) return;
                 e.getDrops().remove(itemStack);
                returned.add(itemStack);
             });

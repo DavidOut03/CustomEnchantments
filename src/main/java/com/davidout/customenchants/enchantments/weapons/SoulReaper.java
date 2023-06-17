@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.weapons;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
@@ -29,7 +30,7 @@ public class SoulReaper extends CustomEnchantment {
         if(!(e.getDamager() instanceof Player)) return;
         Player player = (Player) e.getDamager();
 
-        if(!player.getItemInHand().containsEnchantment(this) || !(e.getEntity() instanceof Monster)) return;
+        if(!EnchantmentManager.containsEnchantment(this, player.getItemInHand()) || !(e.getEntity() instanceof Monster)) return;
         e.setDamage(e.getDamage() * (1.2 * player.getItemInHand().getEnchantmentLevel(this)));
     }
 }

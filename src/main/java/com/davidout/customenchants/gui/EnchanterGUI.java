@@ -95,28 +95,24 @@ public class EnchanterGUI extends GUI implements Listener {
             if(clicked.getType().equals(Material.LIME_STAINED_GLASS_PANE)) {
                 if(player.getLevel() < 10 && !player.getGameMode().equals(GameMode.CREATIVE)) return;
                 Enchanter.enchantItem(EnchantmentType.COMMON, enchantItem);
-                player.setLevel(player.getLevel() - 10);
+                if(!player.getGameMode().equals(GameMode.CREATIVE)) player.setLevel(player.getLevel() - 10);
             }
 
             if(clicked.getType().equals(Material.BLUE_STAINED_GLASS_PANE)) {
                 if(player.getLevel() < 20 && !player.getGameMode().equals(GameMode.CREATIVE)) return;
                 Enchanter.enchantItem(EnchantmentType.EPIC, enchantItem);
-                player.setLevel(player.getLevel() - 20);
+                if(!player.getGameMode().equals(GameMode.CREATIVE)) player.setLevel(player.getLevel() - 20);
             }
 
             if(clicked.getType().equals(Material.ORANGE_STAINED_GLASS_PANE)) {
                 if(player.getLevel() < 30 && !player.getGameMode().equals(GameMode.CREATIVE)) return;
                 Enchanter.enchantItem(EnchantmentType.LEGENDARY, enchantItem);
-                player.setLevel(player.getLevel() - 30);
+                if(!player.getGameMode().equals(GameMode.CREATIVE)) player.setLevel(player.getLevel() - 30);
             }
 
             e.getInventory().setItem(40, enchantItem);
             return;
         }
-
-
-
-
 
         if(e.getSlot() != 40) return;
         ItemStack currentItem = (clicked.getType().equals(Material.ITEM_FRAME)) ? null : clicked;

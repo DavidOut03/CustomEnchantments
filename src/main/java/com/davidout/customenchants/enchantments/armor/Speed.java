@@ -1,5 +1,6 @@
 package com.davidout.customenchants.enchantments.armor;
 
+import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.custom.event.ArmorDequipEvent;
 import com.davidout.api.custom.event.ArmorEquipEvent;
 import com.davidout.api.custom.enchantment.CustomEnchantment;
@@ -26,14 +27,14 @@ public class Speed extends CustomEnchantment {
 
         if(event instanceof ArmorEquipEvent) {
             ArmorEquipEvent e = (ArmorEquipEvent) event;
-            if(!e.getEquipedArmor().containsEnchantment(this)) return;
-            e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 99999, e.getEquipedArmor().getEnchantmentLevel(this)));
+            if(!EnchantmentManager.containsEnchantment(this, e.getEquipedArmor())) return;
+            e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, e.getEquipedArmor().getEnchantmentLevel(this) - 1));
             return;
         }
 
         if(!(event instanceof ArmorDequipEvent)) return;
         ArmorDequipEvent e = (ArmorDequipEvent) event;
-        if(e.getDequipedArmor().containsEnchantment(this)) return;
+        if(!EnchantmentManager.containsEnchantment(this, e.getDequipedArmor())) return;
         e.getPlayer().removePotionEffect(PotionEffectType.SPEED);
     }
 }

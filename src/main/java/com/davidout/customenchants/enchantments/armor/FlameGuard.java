@@ -1,5 +1,6 @@
 package com.davidout.customenchants.enchantments.armor;
 
+import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.custom.event.ArmorDequipEvent;
 import com.davidout.api.custom.event.ArmorEquipEvent;
 import com.davidout.api.custom.enchantment.CustomEnchantment;
@@ -26,7 +27,7 @@ public class FlameGuard extends CustomEnchantment {
         public void onAction(Event event) {
             if(event instanceof ArmorEquipEvent) {
                 ArmorEquipEvent e = (ArmorEquipEvent) event;
-                if(!e.getEquipedArmor().containsEnchantment(this)) return;
+                if(!EnchantmentManager.containsEnchantment(this, e.getEquipedArmor())) return;
                 e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 99999, 0));
                 return;
             }

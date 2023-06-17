@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.tools;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import com.davidout.customenchants.enchantments.CustomEnchantmentManager;
 import org.bukkit.Material;
@@ -45,7 +46,7 @@ public class AutoSmelt extends CustomEnchantment {
         BlockBreakEvent e = (BlockBreakEvent) event;
         Player p = e.getPlayer();
 
-        if(!e.getPlayer().getItemInHand().containsEnchantment(this) || e.getPlayer().getItemInHand().containsEnchantment(CustomEnchantmentManager.multiblock)) return;
+        if(!EnchantmentManager.containsEnchantment(this, e.getPlayer().getItemInHand()) || EnchantmentManager.containsEnchantment(CustomEnchantmentManager.multiblock, e.getPlayer().getItemInHand())) return;
         if(!e.getPlayer().getItemInHand().getType().toString().contains("PICKAXE") || !e.getBlock().getType().name().endsWith("_ORE")) return;
         CustomEnchantmentManager.breakBlock(e.getBlock(), e.getPlayer(), e.getPlayer().getItemInHand());
     }

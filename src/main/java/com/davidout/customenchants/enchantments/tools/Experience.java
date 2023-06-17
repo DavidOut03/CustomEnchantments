@@ -1,6 +1,8 @@
 package com.davidout.customenchants.enchantments.tools;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentManager;
+import com.davidout.api.enums.EnchantmentTarget;
 import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerExpChangeEvent;
 
@@ -9,7 +11,7 @@ import java.util.List;
 
 public class Experience extends CustomEnchantment {
     public Experience(String name, int maxLevel) {
-        super(name, maxLevel);
+        super(name, maxLevel, EnchantmentTarget.ALL);
     }
 
     @Override
@@ -22,7 +24,7 @@ public class Experience extends CustomEnchantment {
         if(!(event instanceof PlayerExpChangeEvent)) return;
         PlayerExpChangeEvent e = (PlayerExpChangeEvent) event;
 
-        if(!e.getPlayer().getItemInHand().containsEnchantment(this)) return;
+        if(!EnchantmentManager.containsEnchantment(this, e.getPlayer().getItemInHand())) return;
         float multiplier = (float) ((e.getPlayer().getItemInHand().getEnchantmentLevel(this) * 0.35) + 1);
         e.setAmount( Math.round(multiplier * e.getAmount()) );
     }

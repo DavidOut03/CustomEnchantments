@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.all;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -29,7 +30,7 @@ public class AutoRepair extends CustomEnchantment {
 
         if(!(e.getTo().getBlockX() != e.getFrom().getBlockX() || e.getTo().getBlockZ() != e.getFrom().getBlockZ()) || player.isFlying()) return;
         for (ItemStack item : player.getInventory().getContents()) {
-            if(item == null || !item.containsEnchantment(this)) continue;
+            if(!EnchantmentManager.containsEnchantment(this, item)) continue;
             int enchantmentLevel = item.getEnchantmentLevel(this);
             double restorationChance = 0.2 * enchantmentLevel;
             double random = Math.random();

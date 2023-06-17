@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.weapons;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Event;
@@ -31,7 +32,7 @@ public class Venomous extends CustomEnchantment {
         LivingEntity et = (LivingEntity) e.getEntity();
 
         if(da.getEquipment().getItemInHand() == null) return;
-        if(!da.getEquipment().getItemInHand().containsEnchantment(this)) return;
+        if(!EnchantmentManager.containsEnchantment(this, da.getEquipment().getItemInHand())) return;
         et.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 40, da.getEquipment().getItemInHand().getEnchantmentLevel(this) - 1));
      }
 }

@@ -15,6 +15,7 @@ import org.bukkit.block.Block;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.Zombie;
+import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -50,15 +51,17 @@ public class ClickListener implements Listener {
         enchanterGUI.openInventory(e.getPlayer(), getBookshelve(e.getClickedBlock()) + "", e.getPlayer().getName());
     }
 
-    @EventHandler(priority = EventPriority.LOWEST)
+    @EventHandler(priority = EventPriority.HIGH)
     public void onClick(InventoryClickEvent event) {
         if(event.isCancelled() ||event.getCurrentItem() == null || event.getCursor() == null) return;
         if(event.getCursor().getType() != Material.BOOK || event.getCursor().getEnchantments().isEmpty()) return;
+        if(event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) return;
         event.setCancelled(true);
 
-        ItemStack set = event.getCurrentItem().clone();
+        ItemStack set = event.getCurrentItem();
 
         boolean worked = false;
+
         for (Map.Entry<Enchantment, Integer> enchantmentIntegerEntry : event.getCursor().getEnchantments().entrySet()) {
             Enchantment enchantment = enchantmentIntegerEntry.getKey();
             int level = enchantmentIntegerEntry.getValue();
@@ -68,6 +71,7 @@ public class ClickListener implements Listener {
         }
 
         if(!worked) return;
+
         event.setCursor(null);
         event.setCurrentItem(set);
     }

@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.tools;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import com.davidout.customenchants.enchantments.CustomEnchantmentManager;
 import org.bukkit.World;
@@ -27,7 +28,7 @@ public class Lumberjack extends CustomEnchantment {
         BlockBreakEvent e = (BlockBreakEvent) event;
         Player p = e.getPlayer();
 
-        if(!p.getItemInHand().containsEnchantment(this)) return;
+        if(!EnchantmentManager.containsEnchantment(this, p.getItemInHand())) return;
         if(!p.getItemInHand().getType().toString().contains("AXE")) return;
         if(!e.getBlock().getType().name().endsWith("_LOG")) return;
 

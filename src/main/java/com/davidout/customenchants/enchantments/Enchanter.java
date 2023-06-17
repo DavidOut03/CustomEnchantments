@@ -120,6 +120,7 @@ public class Enchanter {
         enchantments.put(CustomEnchantmentManager.venomous, Arrays.asList(1));
         enchantments.put(CustomEnchantmentManager.attackSpeed, Arrays.asList(1));
         enchantments.put(CustomEnchantmentManager.soulReaper, Arrays.asList(1));
+        enchantments.put(CustomEnchantmentManager.trophy, Arrays.asList(1));
         return enchantments;
     }
 
@@ -144,6 +145,7 @@ public class Enchanter {
         enchantments.put(CustomEnchantmentManager.venomous, Arrays.asList(1,2));
         enchantments.put(CustomEnchantmentManager.attackSpeed, Arrays.asList(2));
         enchantments.put(CustomEnchantmentManager.soulReaper, Arrays.asList(2,3));
+        enchantments.put(CustomEnchantmentManager.trophy, Arrays.asList(2));
 
 
         return enchantments;
@@ -170,6 +172,7 @@ public class Enchanter {
         enchantments.put(CustomEnchantmentManager.venomous, Arrays.asList(2));
         enchantments.put(CustomEnchantmentManager.attackSpeed, Arrays.asList(3));
         enchantments.put(CustomEnchantmentManager.soulReaper, Arrays.asList(4));
+        enchantments.put(CustomEnchantmentManager.trophy, Arrays.asList(3));
 
         return enchantments;
     }

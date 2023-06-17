@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.tools;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import com.davidout.customenchants.enchantments.CustomEnchantmentManager;
 import org.bukkit.Location;
@@ -29,7 +30,7 @@ public class Telepathy extends CustomEnchantment {
             BlockBreakEvent breakEvent = (BlockBreakEvent) event;
             Player player = breakEvent.getPlayer();
              if(player.getInventory().firstEmpty() == -1) return;
-             if(!player.getItemInHand().containsEnchantment(this) || player.getItemInHand().containsEnchantment(CustomEnchantmentManager.autoSmelt) || player.getItemInHand().containsEnchantment(CustomEnchantmentManager.multiblock)) return;
+             if(!EnchantmentManager.containsEnchantment(this, player.getItemInHand())|| EnchantmentManager.containsEnchantment(CustomEnchantmentManager.autoSmelt, player.getItemInHand()) || EnchantmentManager.containsEnchantment(CustomEnchantmentManager.multiblock, player.getItemInHand())) return;
              CustomEnchantmentManager.breakBlock(breakEvent.getBlock(), breakEvent.getPlayer(), breakEvent.getPlayer().getItemInHand());
     }
 

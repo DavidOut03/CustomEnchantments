@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.tools;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import com.davidout.api.utillity.TextUtils;
 import com.davidout.customenchants.enchantments.CustomEnchantmentManager;
@@ -32,7 +33,7 @@ public class Multiblock extends CustomEnchantment {
         Player player = blockBreakEvent.getPlayer();
 
         if(!player.getInventory().getItemInMainHand().getType().toString().toLowerCase().contains("pickaxe")) return;
-        if(!player.getInventory().getItemInMainHand().containsEnchantment(this)) return;
+        if(!EnchantmentManager.containsEnchantment(this, player.getItemInHand())) return;
         int level = player.getInventory().getItemInMainHand().getEnchantmentLevel(this);
         CustomEnchantmentManager.breakBlock(blockBreakEvent.getBlock(), player, player.getItemInHand());
         breakArea(player, blockBreakEvent.getBlock(), level);

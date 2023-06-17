@@ -71,7 +71,8 @@ public final class Main extends MinecraftPlugin {
 
                 CustomEnchantmentManager.venomous,
                 CustomEnchantmentManager.attackSpeed,
-                CustomEnchantmentManager.soulReaper
+                CustomEnchantmentManager.soulReaper,
+                CustomEnchantmentManager.trophy
         ).forEach(customEnchantment -> {
             getEnchantmentManager().addEnchantment(customEnchantment);
         });
@@ -85,7 +86,7 @@ public final class Main extends MinecraftPlugin {
 
     public void registerCustomRecipes() {
         ItemStack keyResult = Enchanter.getKeyItem();
-        ShapedRecipe keyRecipe = new ShapedRecipe(new NamespacedKey(getPlugin(), "keyRecipe"), keyResult);
+        ShapedRecipe keyRecipe = new ShapedRecipe(new NamespacedKey(getPlugin(), "enchanter_key"), keyResult);
         keyRecipe.shape(
                 "---",
                 "+*+",

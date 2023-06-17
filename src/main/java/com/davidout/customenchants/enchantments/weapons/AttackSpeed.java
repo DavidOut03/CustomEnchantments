@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.weapons;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeInstance;
@@ -29,17 +30,17 @@ public class AttackSpeed extends CustomEnchantment {
     public void onAction(Event event) {
         if(!(event instanceof PlayerItemHeldEvent)) return;
         PlayerItemHeldEvent e = (PlayerItemHeldEvent) event;
-        Player player = e.getPlayer();
-
         ItemStack newItem = e.getPlayer().getInventory().getItem(e.getNewSlot());
         ItemStack oldItem = e.getPlayer().getInventory().getItem(e.getPreviousSlot());
 
         AttributeInstance attribute = e.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_SPEED);
-
-        if(oldItem != null && oldItem.containsEnchantment(this))  attribute.getModifiers().forEach(attribute::removeModifier);
-        if(newItem == null || !newItem.containsEnchantment(this)) return;
+        if(EnchantmentManager.containsEnchantment(this, oldItem))  attribute.getModifiers().forEach(attribute::removeModifier);
+        if(!EnchantmentManager.containsEnchantment(this, newItem)) return;
         int level = newItem.getEnchantmentLevel(this);
+        
         double attackSpeed = 4 * level; // Set your desired attack speed here
-        attribute.addModifier(new AttributeModifier("custom.attackSpeed", attackSpeed - 4, AttributeModifier.Operation.ADD_NUMBER));
+        attribute.addModifier(new AttributeModifier("generic.attackSpeed", attackSpeed - 4, AttributeModifier.Operation.ADD_NUMBER));
+
     }
+    
 }

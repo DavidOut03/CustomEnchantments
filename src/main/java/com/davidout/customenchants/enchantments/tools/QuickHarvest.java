@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.tools;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import com.davidout.customenchants.Main;
 import com.davidout.customenchants.enchantments.CustomEnchantmentManager;
@@ -32,7 +33,7 @@ public class QuickHarvest extends CustomEnchantment {
         Location underBlock = e.getBlock().getWorld().getBlockAt(e.getBlock().getX(), e.getBlock().getY() - 1, e.getBlock().getZ()).getLocation();
 
 
-        if(!e.getPlayer().getItemInHand().containsEnchantment(this) || !e.getPlayer().getItemInHand().getType().name().endsWith("_HOE")) return;
+        if(!EnchantmentManager.containsEnchantment(this, e.getPlayer().getItemInHand()) || !e.getPlayer().getItemInHand().getType().name().endsWith("_HOE")) return;
         if(e.getBlock().getWorld().getBlockAt(underBlock).getType() != Material.FARMLAND && e.getBlock().getWorld().getBlockAt(underBlock).getType() != Material.SOUL_SAND) return;
         if(getCrops().get(e.getBlock().getType()) == null || !(e.getBlock().getBlockData() instanceof Ageable)) return;
         Ageable ageable = (Ageable) e.getBlock().getBlockData();
@@ -47,7 +48,7 @@ public class QuickHarvest extends CustomEnchantment {
         Bukkit.getScheduler().runTask(Main.getPlugin(), () ->  e.getBlock().setType(e.getBlock().getType()));
 
             e.getBlock().getDrops(e.getPlayer().getItemInHand()).forEach(itemStack -> {
-                if(e.getPlayer().getItemInHand().containsEnchantment(CustomEnchantmentManager.telepathy)) {
+                if(EnchantmentManager.containsEnchantment(CustomEnchantmentManager.telepathy, e.getPlayer().getItemInHand())) {
                     Telepathy.teleportDropToInventory(e.getPlayer().getLocation(), itemStack, e.getPlayer());
                     return;
                 }
