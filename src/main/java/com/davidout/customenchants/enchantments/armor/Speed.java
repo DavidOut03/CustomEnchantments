@@ -1,5 +1,6 @@
 package com.davidout.customenchants.enchantments.armor;
 
+import com.davidout.api.custom.enchantment.EnchantmentDetails;
 import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.custom.event.ArmorDequipEvent;
 import com.davidout.api.custom.event.ArmorEquipEvent;
@@ -13,8 +14,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Speed extends CustomEnchantment {
-    public Speed(String name, int maxLevel) {
-        super(name, maxLevel, EnchantmentTarget.BOOTS);
+    public Speed() {
+        super(new EnchantmentDetails("speed", 1, "Receive a speed boost with these boots.", EnchantmentTarget.BOOTS));
     }
 
     @Override

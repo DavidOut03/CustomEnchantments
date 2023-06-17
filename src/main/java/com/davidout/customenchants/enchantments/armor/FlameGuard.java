@@ -1,5 +1,6 @@
 package com.davidout.customenchants.enchantments.armor;
 
+import com.davidout.api.custom.enchantment.EnchantmentDetails;
 import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.custom.event.ArmorDequipEvent;
 import com.davidout.api.custom.event.ArmorEquipEvent;
@@ -14,8 +15,8 @@ import java.util.List;
 
 public class FlameGuard extends CustomEnchantment {
 
-        public FlameGuard(String name, int maxLevel) {
-            super(name, maxLevel, EnchantmentTarget.LEGGINGS);
+        public FlameGuard() {
+            super(new EnchantmentDetails("flame_guard", 1, "Protects your from fire damage.", EnchantmentTarget.LEGGINGS));
         }
 
         @Override

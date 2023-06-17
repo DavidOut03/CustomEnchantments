@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.tools;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentDetails;
 import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import com.davidout.customenchants.enchantments.CustomEnchantmentManager;
@@ -31,8 +32,8 @@ public class AutoSmelt extends CustomEnchantment {
             // Add more ore materials as needed
     };
 
-    public AutoSmelt(String name, int maxLevel) {
-        super(name, maxLevel, EnchantmentTarget.PICKAXE);
+    public AutoSmelt() {
+        super(new EnchantmentDetails(  "autosmelt", 1, "Smelts the ores automaticly when you mine a ore.", EnchantmentTarget.PICKAXE));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.weapons;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentDetails;
 import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import org.bukkit.attribute.Attribute;
@@ -17,8 +18,8 @@ import java.util.List;
 
 public class AttackSpeed extends CustomEnchantment {
 
-    public AttackSpeed(String name, int maxLevel) {
-        super(name, maxLevel, Arrays.asList(EnchantmentTarget.SWORD, EnchantmentTarget.AXE));
+    public AttackSpeed() {
+        super(new EnchantmentDetails("attack_speed", 3, "Reduces the time you have to wait to do maximum damage.", Arrays.asList(EnchantmentTarget.SWORD, EnchantmentTarget.AXE)));
     }
 
     @Override

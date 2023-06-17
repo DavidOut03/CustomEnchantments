@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.weapons;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentDetails;
 import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import org.bukkit.entity.Monster;
@@ -13,8 +14,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SoulReaper extends CustomEnchantment {
-    public SoulReaper(String name, int maxLevel) {
-        super(name, maxLevel, Arrays.asList(EnchantmentTarget.SWORD, EnchantmentTarget.AXE));
+    public SoulReaper() {
+        super(new EnchantmentDetails("soul_reaper", 4, "Increases your damage agains monsters.", Arrays.asList(EnchantmentTarget.SWORD, EnchantmentTarget.AXE)));
     }
 
     @Override

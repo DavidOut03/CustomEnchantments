@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.armor;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentDetails;
 import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import org.bukkit.entity.Player;
@@ -12,8 +13,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Harmony extends CustomEnchantment {
-    public Harmony(String name, int maxLevel) {
-        super(name, maxLevel, EnchantmentTarget.CHESTPLATE);
+    public Harmony() {
+        super(new EnchantmentDetails("harmony", 2, "Slowly increases your health and food level when walking.", EnchantmentTarget.CHESTPLATE));
     }
 
     @Override

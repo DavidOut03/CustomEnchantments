@@ -26,30 +26,30 @@ import java.util.List;
 public class CustomEnchantmentManager {
 
     // all
-    public static final CustomEnchantment autoRepair = new AutoRepair("autorepair", 3);
-    public static final CustomEnchantment soulBound = new Soulbound("soulbound", 2);
+    public static final CustomEnchantment autoRepair = new AutoRepair();
+    public static final CustomEnchantment soulBound = new Soulbound();
 
     // tools
 
-    public static final CustomEnchantment multiblock = new Multiblock("multiblock", 2);
-    public static final CustomEnchantment lumberjack = new Lumberjack("lumberjack", 1);
-    public static final CustomEnchantment autoSmelt = new AutoSmelt("autosmelt", 1);
-    public static final CustomEnchantment telepathy = new Telepathy("telepathy", 1);
-    public static final CustomEnchantment experience = new Experience("experience", 3);
-    public static final CustomEnchantment quickHarvest = new QuickHarvest("quick_harvest", 1);
+    public static final CustomEnchantment multiblock = new Multiblock();
+    public static final CustomEnchantment lumberjack = new Lumberjack();
+    public static final CustomEnchantment autoSmelt = new AutoSmelt();
+    public static final CustomEnchantment telepathy = new Telepathy();
+    public static final CustomEnchantment experience = new Experience();
+    public static final CustomEnchantment quickHarvest = new QuickHarvest();
 
 
     // armour
-    public static final CustomEnchantment speed = new Speed("speed", 1);
-    public static final CustomEnchantment flameguard = new FlameGuard("flame_guard", 1);
-    public static final CustomEnchantment jellyLegs = new JellyLegs("jelly_legs", 1);
-    public static final CustomEnchantment harmony = new Harmony("harmony", 2);
+    public static final CustomEnchantment speed = new Speed();
+    public static final CustomEnchantment flameguard = new FlameGuard();
+    public static final CustomEnchantment jellyLegs = new JellyLegs();
+    public static final CustomEnchantment harmony = new Harmony();
 
     // weapons
-    public static final CustomEnchantment venomous = new Venomous("venomous", 2);
-    public static final CustomEnchantment attackSpeed = new AttackSpeed("attack_speed", 3);
-    public static final CustomEnchantment soulReaper = new SoulReaper("soul_reaper", 4);
-    public static final CustomEnchantment trophy = new Trophy("trophy", 3);
+    public static final CustomEnchantment venomous = new Venomous();
+    public static final CustomEnchantment attackSpeed = new AttackSpeed();
+    public static final CustomEnchantment soulReaper = new SoulReaper();
+    public static final CustomEnchantment trophy = new Trophy();
 
 
 

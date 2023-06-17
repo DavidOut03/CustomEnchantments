@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.weapons;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentDetails;
 import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import com.davidout.api.utillity.item.ItemCreator;
@@ -17,8 +18,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class Trophy extends CustomEnchantment {
-    public Trophy(String name, int maxLevel) {
-        super(name, maxLevel, EnchantmentTarget.SWORD);
+    public Trophy() {
+        super(new EnchantmentDetails("trophy", 3, "Creates the chance to receive a mob head when killing a mob.", Arrays.asList(EnchantmentTarget.SWORD, EnchantmentTarget.AXE)));
     }
 
     @Override

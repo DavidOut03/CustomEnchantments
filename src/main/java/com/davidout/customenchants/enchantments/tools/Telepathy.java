@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.tools;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentDetails;
 import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import com.davidout.customenchants.enchantments.CustomEnchantmentManager;
@@ -15,8 +16,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Telepathy extends CustomEnchantment {
-    public Telepathy(String name, int maxLevel) {
-        super(name, maxLevel, EnchantmentTarget.TOOLS);
+    public Telepathy() {
+        super(new EnchantmentDetails("telepathy", 1, "When you break blocks the items will automatically appear in your inventory.", EnchantmentTarget.TOOLS));
     }
 
     @Override

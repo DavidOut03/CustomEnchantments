@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.tools;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentDetails;
 import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import com.davidout.customenchants.Main;
@@ -17,8 +18,8 @@ import java.util.HashMap;
 import java.util.List;
 
 public class QuickHarvest extends CustomEnchantment {
-    public QuickHarvest(String name, int maxLevel) {
-        super(name, maxLevel, EnchantmentTarget.HOE);
+    public QuickHarvest() {
+        super(new EnchantmentDetails("quick_harvest", 1, "Quick harvest crops and automaticly place them down.", EnchantmentTarget.HOE));
     }
 
     @Override

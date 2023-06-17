@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.tools;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentDetails;
 import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import com.davidout.api.utillity.TextUtils;
@@ -17,8 +18,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class Multiblock extends CustomEnchantment {
-    public Multiblock(String name, int maxLevel) {
-        super(name, maxLevel, EnchantmentTarget.PICKAXE);
+    public Multiblock() {
+        super(new EnchantmentDetails(  "multiblock", 2, "Mine a bigger area of blocks.", EnchantmentTarget.PICKAXE));
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.tools;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentDetails;
 import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import org.bukkit.event.Event;
@@ -10,8 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Experience extends CustomEnchantment {
-    public Experience(String name, int maxLevel) {
-        super(name, maxLevel, EnchantmentTarget.ALL);
+    public Experience() {
+        super(new EnchantmentDetails("experience", 3, "Receive more experience when holding a item with this enchantment", Arrays.asList(EnchantmentTarget.TOOLS, EnchantmentTarget.WEAPONS)));
     }
 
     @Override

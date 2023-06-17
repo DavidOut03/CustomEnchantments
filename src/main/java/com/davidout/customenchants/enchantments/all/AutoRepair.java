@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.all;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentDetails;
 import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import org.bukkit.entity.Player;
@@ -13,8 +14,8 @@ import java.util.List;
 import java.util.Random;
 
 public class AutoRepair extends CustomEnchantment {
-    public AutoRepair(String name, int maxLevel) {
-        super(name, maxLevel, EnchantmentTarget.ALL);
+    public AutoRepair() {
+        super(new EnchantmentDetails("autorepair", 3, "Repairs the items in your inventory when you walk.", EnchantmentTarget.ALL));
     }
 
     @Override

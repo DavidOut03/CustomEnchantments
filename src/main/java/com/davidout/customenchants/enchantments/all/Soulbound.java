@@ -1,7 +1,9 @@
 package com.davidout.customenchants.enchantments.all;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentDetails;
 import com.davidout.api.custom.enchantment.EnchantmentManager;
+import com.davidout.api.enums.EnchantmentTarget;
 import com.davidout.customenchants.Main;
 import org.bukkit.Material;
 import org.bukkit.event.Event;
@@ -14,8 +16,8 @@ import org.bukkit.metadata.MetadataValue;
 import java.util.*;
 
 public class Soulbound extends CustomEnchantment {
-    public Soulbound(String name, int maxLevel) {
-        super(name, maxLevel);
+    public Soulbound() {
+        super(new EnchantmentDetails("soulbound", 2, "Items with this enchantment have a change on returning to you when you die.", EnchantmentTarget.ALL));
     }
 
     @Override

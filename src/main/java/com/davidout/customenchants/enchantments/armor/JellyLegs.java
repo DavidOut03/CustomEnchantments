@@ -1,6 +1,7 @@
 package com.davidout.customenchants.enchantments.armor;
 
 import com.davidout.api.custom.enchantment.CustomEnchantment;
+import com.davidout.api.custom.enchantment.EnchantmentDetails;
 import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
 import org.bukkit.Material;
@@ -18,8 +19,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class JellyLegs extends CustomEnchantment {
-    public JellyLegs(String name, int maxLevel) {
-        super(name, maxLevel, EnchantmentTarget.BOOTS);
+    public JellyLegs() {
+        super(new EnchantmentDetails("jelly_legs", 1, "Protects you from fall damage.", EnchantmentTarget.LEGGINGS));
     }
 
     @Override
@@ -33,8 +34,8 @@ public class JellyLegs extends CustomEnchantment {
             EntityDamageEvent e = (EntityDamageEvent) event;
             if(!(e.getEntity() instanceof LivingEntity)) return;
             LivingEntity et = (LivingEntity) e.getEntity();
-            if(et.getEquipment().getBoots() == null) return;
-            if(!EnchantmentManager.containsEnchantment(this, et.getEquipment().getBoots())) return;
+            if(et.getEquipment().getLeggings() == null) return;
+            if(!EnchantmentManager.containsEnchantment(this, et.getEquipment().getLeggings())) return;
             e.setCancelled(true);
 
             if(et instanceof Player &&  ((Player) et).isSneaking()) return;
