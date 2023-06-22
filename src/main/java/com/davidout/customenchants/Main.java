@@ -3,7 +3,8 @@ package com.davidout.customenchants;
 import com.davidout.api.MinecraftPlugin;
 import com.davidout.api.custom.command.CustomCommand;
 import com.davidout.api.custom.file.PluginFile;
-import com.davidout.api.utillity.TextUtils;
+import com.davidout.api.custom.language.LanguageManager;
+import com.davidout.api.utillity.text.TextUtils;
 import com.davidout.customenchants.commands.KeyRecipeCommand;
 import com.davidout.customenchants.enchantments.CustomEnchantmentManager;
 import com.davidout.customenchants.enchantments.Enchanter;
@@ -25,7 +26,7 @@ public final class Main extends MinecraftPlugin {
 
     @Override
     public void onStartup() {
-        Bukkit.getConsoleSender().sendMessage(TextUtils.formatColorCodes("&cHellow there"));
+        Bukkit.getConsoleSender().sendMessage(TextUtils.formatColorCodes(LanguageManager.getTranslation("onEnable")));
 
        registerEnchantments();
        registerGUIS();
@@ -34,7 +35,7 @@ public final class Main extends MinecraftPlugin {
 
     @Override
     public void onShutdown() {
-
+        Bukkit.getConsoleSender().sendMessage(TextUtils.formatColorCodes(LanguageManager.getTranslation("onDisable")));
     }
 
     @Override
@@ -47,10 +48,9 @@ public final class Main extends MinecraftPlugin {
         return Arrays.asList(new KeyRecipeCommand());
     }
 
-    @Override
-    public List<PluginFile> filesToCreate() {
-        return Arrays.asList();
-    }
+
+
+
 
     public void registerEnchantments() {
         Arrays.asList(
@@ -63,6 +63,7 @@ public final class Main extends MinecraftPlugin {
                 CustomEnchantmentManager.telepathy,
                 CustomEnchantmentManager.experience,
                 CustomEnchantmentManager.quickHarvest,
+                CustomEnchantmentManager.haste,
 
                 CustomEnchantmentManager.speed,
                 CustomEnchantmentManager.flameguard,

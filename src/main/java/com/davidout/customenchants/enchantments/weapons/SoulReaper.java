@@ -32,6 +32,6 @@ public class SoulReaper extends CustomEnchantment {
         Player player = (Player) e.getDamager();
 
         if(!EnchantmentManager.containsEnchantment(this, player.getItemInHand()) || !(e.getEntity() instanceof Monster)) return;
-        e.setDamage(e.getDamage() * (1.2 * player.getItemInHand().getEnchantmentLevel(this)));
+        e.setDamage(e.getDamage() * (1.2 * player.getItemInHand().getEnchantments().get(this)));
     }
 }

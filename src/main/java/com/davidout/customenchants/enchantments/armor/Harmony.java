@@ -31,13 +31,13 @@ public class Harmony extends CustomEnchantment {
         if(!(e.getTo().getBlockX() != e.getFrom().getBlockX() || e.getTo().getBlockZ() != e.getFrom().getBlockZ()) || player.isFlying()) return;
         ItemStack item = player.getInventory().getChestplate();
             if(!EnchantmentManager.containsEnchantment(this, item)) return;
-            int enchantmentLevel = item.getEnchantmentLevel(this);
+            int enchantmentLevel = item.getEnchantments().get(this);
             double restorationChance = 0.2 * enchantmentLevel;
             double random = Math.random();
 
             if (random >= restorationChance) return;
-            double newHealth = (player.getHealth() == 20) ? 20 : player.getHealth() + item.getEnchantmentLevel(this);
-            int newFood = (player.getFoodLevel() == 20) ? 20 : player.getFoodLevel() + item.getEnchantmentLevel(this);
+            double newHealth = (player.getHealth() == 20) ? 20 : player.getHealth() + item.getEnchantments().get(this);
+            int newFood = (player.getFoodLevel() == 20) ? 20 : player.getFoodLevel() + item.getEnchantments().get(this);
 
             player.setHealth(newHealth);
             player.setFoodLevel(newFood);

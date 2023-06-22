@@ -32,8 +32,8 @@ public class AutoRepair extends CustomEnchantment {
         if(!(e.getTo().getBlockX() != e.getFrom().getBlockX() || e.getTo().getBlockZ() != e.getFrom().getBlockZ()) || player.isFlying()) return;
         for (ItemStack item : player.getInventory().getContents()) {
             if(!EnchantmentManager.containsEnchantment(this, item)) continue;
-            int enchantmentLevel = item.getEnchantmentLevel(this);
-            double restorationChance = 0.2 * enchantmentLevel;
+            int level = item.getEnchantments().get(this);
+            double restorationChance = 0.2 * level;
             double random = Math.random();
 
             if (random >= restorationChance) continue;

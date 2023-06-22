@@ -15,7 +15,7 @@ import java.util.List;
 
 public class Speed extends CustomEnchantment {
     public Speed() {
-        super(new EnchantmentDetails("speed", 1, "Receive a speed boost with these boots.", EnchantmentTarget.BOOTS));
+        super(new EnchantmentDetails("speed", 2, "Receive a speed boost with these boots.", EnchantmentTarget.BOOTS));
     }
 
     @Override
@@ -29,7 +29,7 @@ public class Speed extends CustomEnchantment {
         if(event instanceof ArmorEquipEvent) {
             ArmorEquipEvent e = (ArmorEquipEvent) event;
             if(!EnchantmentManager.containsEnchantment(this, e.getEquipedArmor())) return;
-            e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, e.getEquipedArmor().getEnchantmentLevel(this) - 1));
+            e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, e.getEquipedArmor().getEnchantments().get(this) - 1));
             return;
         }
 

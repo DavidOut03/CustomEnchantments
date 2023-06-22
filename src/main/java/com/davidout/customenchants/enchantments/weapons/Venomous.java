@@ -35,6 +35,6 @@ public class Venomous extends CustomEnchantment {
 
         if(da.getEquipment().getItemInHand() == null) return;
         if(!EnchantmentManager.containsEnchantment(this, da.getEquipment().getItemInHand())) return;
-        et.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 40, da.getEquipment().getItemInHand().getEnchantmentLevel(this) - 1));
+        et.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 40, da.getEquipment().getItemInHand().getEnchantments().get(this) - 1));
      }
 }

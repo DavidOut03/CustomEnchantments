@@ -37,7 +37,7 @@ public class AttackSpeed extends CustomEnchantment {
         AttributeInstance attribute = e.getPlayer().getAttribute(Attribute.GENERIC_ATTACK_SPEED);
         if(EnchantmentManager.containsEnchantment(this, oldItem))  attribute.getModifiers().forEach(attribute::removeModifier);
         if(!EnchantmentManager.containsEnchantment(this, newItem)) return;
-        int level = newItem.getEnchantmentLevel(this);
+        int level = newItem.getEnchantments().get(this);
         
         double attackSpeed = 4 * level; // Set your desired attack speed here
         attribute.addModifier(new AttributeModifier("generic.attackSpeed", attackSpeed - 4, AttributeModifier.Operation.ADD_NUMBER));

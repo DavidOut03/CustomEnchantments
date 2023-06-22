@@ -36,7 +36,7 @@ public class Trophy extends CustomEnchantment {
         if(!EnchantmentManager.containsEnchantment(this, killer.getItemInHand())) return;
         ItemStack head = getHead(killer, entity);
 
-        int enchantmentLevel = killer.getItemInHand().getEnchantmentLevel(this);
+        int enchantmentLevel = killer.getItemInHand().getEnchantments().get(this);
         double restorationChance = 0.3 * enchantmentLevel;
         double random = Math.random();
 

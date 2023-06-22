@@ -3,8 +3,8 @@ package com.davidout.customenchants.enchantments;
 import com.davidout.api.custom.enchantment.CustomEnchantment;
 import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.enums.EnchantmentTarget;
-import com.davidout.api.utillity.TextUtils;
 import com.davidout.api.utillity.item.ItemCreator;
+import com.davidout.api.utillity.text.TextUtils;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -99,7 +99,7 @@ public class Enchanter {
     }
 
 
-    private static Map<CustomEnchantment, List<Integer>> getCommonEnchantments() {
+    public static Map<CustomEnchantment, List<Integer>> getCommonEnchantments() {
         Map<CustomEnchantment, List<Integer>> enchantments = new HashMap<>();
 
         // all
@@ -124,16 +124,18 @@ public class Enchanter {
         return enchantments;
     }
 
-    private static Map<CustomEnchantment, List<Integer>> getEpicEnchantments() {
+    public static Map<CustomEnchantment, List<Integer>> getEpicEnchantments() {
         Map<CustomEnchantment, List<Integer>> enchantments = new HashMap<>();
 
         // all
         enchantments.put(CustomEnchantmentManager.autoRepair, Arrays.asList(2));
+        enchantments.put(CustomEnchantmentManager.soulBound, Arrays.asList(1));
 
         // tools
         enchantments.put(CustomEnchantmentManager.multiblock, Arrays.asList(1));
         enchantments.put(CustomEnchantmentManager.lumberjack, Arrays.asList(1));
         enchantments.put(CustomEnchantmentManager.experience, Arrays.asList(2));
+        enchantments.put(CustomEnchantmentManager.haste, Arrays.asList(1));
 
         // armour
         enchantments.put(CustomEnchantmentManager.speed, Arrays.asList(1));
@@ -152,16 +154,18 @@ public class Enchanter {
 
     }
 
-    private static Map<CustomEnchantment, List<Integer>> getLegendaryEnchantments() {
+    public static Map<CustomEnchantment, List<Integer>> getLegendaryEnchantments() {
         Map<CustomEnchantment, List<Integer>> enchantments = new HashMap<>();
 
         // all
         enchantments.put(CustomEnchantmentManager.autoRepair, Arrays.asList(3));
+        enchantments.put(CustomEnchantmentManager.soulBound, Arrays.asList(2));
 
 
         // tools
         enchantments.put(CustomEnchantmentManager.multiblock, Arrays.asList(1, 2));
         enchantments.put(CustomEnchantmentManager.experience, Arrays.asList(2, 3));
+        enchantments.put(CustomEnchantmentManager.haste, Arrays.asList(2));
 
         //armour
         enchantments.put(CustomEnchantmentManager.speed, Arrays.asList(2));

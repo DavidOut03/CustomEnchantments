@@ -37,6 +37,7 @@ public class CustomEnchantmentManager {
     public static final CustomEnchantment telepathy = new Telepathy();
     public static final CustomEnchantment experience = new Experience();
     public static final CustomEnchantment quickHarvest = new QuickHarvest();
+    public static final CustomEnchantment haste = new Haste();
 
 
     // armour
@@ -57,7 +58,7 @@ public class CustomEnchantmentManager {
         List<ItemStack> drops =  (EnchantmentManager.containsEnchantment(autoSmelt, tool))? AutoSmelt.breakItemWithAutoSmelt(block, player): new ArrayList<>(block.getDrops(tool));
         block.setType(Material.AIR);
 
-        if(tool != null) tool.setDurability((short) (tool.getDurability() + getUnbreakingDamage(tool.getEnchantmentLevel(Enchantment.DURABILITY))));
+        if(tool != null) tool.setDurability((short) (tool.getDurability() + getUnbreakingDamage(tool.getEnchantments().get(Enchantment.DURABILITY))));
         if(EnchantmentManager.containsEnchantment(telepathy, tool)) {
             drops.forEach(itemStack -> Telepathy.teleportDropToInventory(block.getLocation(), itemStack, player));
             return;

@@ -19,7 +19,7 @@ public class RecipeGui extends GUI {
     }
 
     @Override
-    public void createInventory(String... strings) {
+    public void createInventory(Object... strings) {
 
         setItem(11, ItemCreator.createItem(Material.PAPER));
         setItem(12, ItemCreator.createItem(Material.PAPER));

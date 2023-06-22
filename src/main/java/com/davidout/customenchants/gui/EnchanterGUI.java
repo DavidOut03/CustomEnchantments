@@ -2,9 +2,9 @@ package com.davidout.customenchants.gui;
 
 import com.davidout.api.custom.gui.GUI;
 import com.davidout.api.custom.gui.GUIManager;
-import com.davidout.api.utillity.TextUtils;
 import com.davidout.api.utillity.item.Item;
 import com.davidout.api.utillity.item.ItemCreator;
+import com.davidout.api.utillity.text.TextUtils;
 import com.davidout.customenchants.enchantments.Enchanter;
 import com.davidout.customenchants.enchantments.EnchantmentType;
 import org.bukkit.Bukkit;
@@ -19,6 +19,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 public class EnchanterGUI extends GUI implements Listener {
 
@@ -33,9 +34,10 @@ public class EnchanterGUI extends GUI implements Listener {
     }
 
     @Override
-    public void createInventory(String... strings) {
-        int shelveCount = (int) Integer.parseInt(strings[0]);
-        Player player = Bukkit.getPlayer(strings[1]);
+    public void createInventory(Object... strings) {
+
+        int shelveCount = (int) Integer.parseInt((String) strings[0]);
+        Player player = Bukkit.getPlayer((String) strings[1]);
 
         setItem(13, ItemCreator.createItem(Material.BOOKSHELF, "&d&lEnchantment list", Arrays.asList("&7See all the possible enchantments.")));
 

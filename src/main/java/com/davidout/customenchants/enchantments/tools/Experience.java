@@ -26,7 +26,7 @@ public class Experience extends CustomEnchantment {
         PlayerExpChangeEvent e = (PlayerExpChangeEvent) event;
 
         if(!EnchantmentManager.containsEnchantment(this, e.getPlayer().getItemInHand())) return;
-        float multiplier = (float) ((e.getPlayer().getItemInHand().getEnchantmentLevel(this) * 0.35) + 1);
+        float multiplier = (float) ((e.getPlayer().getItemInHand().getEnchantments().get(this) * 0.35) + 1);
         e.setAmount( Math.round(multiplier * e.getAmount()) );
     }
 

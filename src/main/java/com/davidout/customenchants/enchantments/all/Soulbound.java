@@ -51,7 +51,7 @@ public class Soulbound extends CustomEnchantment {
         List<ItemStack> items = (List<ItemStack>) value.value();
 
         items.forEach(itemStack -> {
-            int enchantmentLevel = itemStack.getEnchantmentLevel(this);
+            int enchantmentLevel = itemStack.getEnchantments().get(this);
             double restorationChance = 0.4 * enchantmentLevel;
             double random = Math.random();
 
