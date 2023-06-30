@@ -11,6 +11,7 @@ import com.davidout.customenchants.enchantments.Enchanter;
 import com.davidout.customenchants.gui.EnchanterGUI;
 import com.davidout.customenchants.gui.EnchantmentsGUI;
 import com.davidout.customenchants.gui.RecipeGui;
+import com.davidout.customenchants.listener.AnvilListener;
 import com.davidout.customenchants.listener.ClickListener;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -40,7 +41,7 @@ public final class Main extends MinecraftPlugin {
 
     @Override
     public List<Listener> registerEvents() {
-        return Arrays.asList(new ClickListener(), new EnchanterGUI());
+        return Arrays.asList(new ClickListener(), new EnchanterGUI(), new AnvilListener());
     }
 
     @Override

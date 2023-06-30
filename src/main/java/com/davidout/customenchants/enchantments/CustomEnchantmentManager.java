@@ -55,10 +55,14 @@ public class CustomEnchantmentManager {
 
 
     public static void breakBlock(Block block, Player player, ItemStack tool) {
+        if(block.getType().equals(Material.BEDROCK)) return;
         List<ItemStack> drops =  (EnchantmentManager.containsEnchantment(autoSmelt, tool))? AutoSmelt.breakItemWithAutoSmelt(block, player): new ArrayList<>(block.getDrops(tool));
         block.setType(Material.AIR);
 
-        if(tool != null) tool.setDurability((short) (tool.getDurability() + getUnbreakingDamage(tool.getEnchantments().get(Enchantment.DURABILITY))));
+        if(tool != null && !tool.getEnchantments().isEmpty() && tool.getEnchantments().containsKey(Enchantment.DURABILITY)) {
+            tool.setDurability((short) (tool.getDurability() + getUnbreakingDamage(tool.getEnchantments().get(Enchantment.DURABILITY))));
+        }
+
         if(EnchantmentManager.containsEnchantment(telepathy, tool)) {
             drops.forEach(itemStack -> Telepathy.teleportDropToInventory(block.getLocation(), itemStack, player));
             return;

@@ -34,6 +34,7 @@ public class JellyLegs extends CustomEnchantment {
             EntityDamageEvent e = (EntityDamageEvent) event;
             if(!(e.getEntity() instanceof LivingEntity)) return;
             LivingEntity et = (LivingEntity) e.getEntity();
+            if(!((EntityDamageEvent) event).getCause().equals(EntityDamageEvent.DamageCause.FALL)) return;
             if(et.getEquipment().getLeggings() == null) return;
             if(!EnchantmentManager.containsEnchantment(this, et.getEquipment().getLeggings())) return;
             e.setCancelled(true);

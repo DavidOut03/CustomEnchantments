@@ -36,7 +36,7 @@ public class Harmony extends CustomEnchantment {
             double random = Math.random();
 
             if (random >= restorationChance) return;
-            double newHealth = (player.getHealth() == 20) ? 20 : player.getHealth() + item.getEnchantments().get(this);
+            double newHealth = (player.getHealth() == 20) ? 20 : (player.getHealth() + item.getEnchantments().get(this) < 20) ? player.getHealth() + item.getEnchantments().get(this) : 20;
             int newFood = (player.getFoodLevel() == 20) ? 20 : player.getFoodLevel() + item.getEnchantments().get(this);
 
             player.setHealth(newHealth);

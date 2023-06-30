@@ -142,7 +142,7 @@ public class EnchanterGUI extends GUI implements Listener {
             return;
         }
 
-        if(e.getCursor().getType().equals(Material.BOOK)) return;
+        if(e.getCursor().getType().equals(Enchanter.getBookItem().getType())) return;
         e.setCursor(clicked);
         e.setCurrentItem(cursor);
     }

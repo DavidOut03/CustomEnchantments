@@ -37,7 +37,7 @@ public class Trophy extends CustomEnchantment {
         ItemStack head = getHead(killer, entity);
 
         int enchantmentLevel = killer.getItemInHand().getEnchantments().get(this);
-        double restorationChance = 0.3 * enchantmentLevel;
+        double restorationChance = 0.1 * enchantmentLevel;
         double random = Math.random();
 
         if (head == null || random >= restorationChance) return;
@@ -53,9 +53,18 @@ public class Trophy extends CustomEnchantment {
             return playerHead;
         }
 
-        String headName = et.getType().name().toUpperCase() + "_HEAD";
-        if(Material.valueOf(headName) == null) return null;
-        String itemName = et.getType().name().substring(0, 1) + et.getType().name().substring(1);
+        String headName = (et.getType().name().toLowerCase().contains("skeleton")) ? et.getType().name().toUpperCase() + "_SKULL" : et.getType().name().toUpperCase() + "_HEAD";
+        if(!isSkull(headName)) return null;
+        String itemName = et.getType().name().substring(0, 1) + et.getType().name().substring(1).toLowerCase();
         return ItemCreator.createItem(Material.valueOf(headName), "&e" + itemName + " head");
+    }
+
+    private boolean isSkull(String headName) {
+        try {
+            Material.valueOf(headName);
+            return true;
+         } catch (Exception ex) {
+            return false;
+        }
     }
 }

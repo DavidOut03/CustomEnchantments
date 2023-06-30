@@ -18,7 +18,7 @@ public class Enchanter {
     }
 
     public static ItemStack getBookItem() {
-        return ItemCreator.createItem(Material.BOOK, "&eEnchanted Book", Arrays.asList(" ", "&7Click with this book on a item to apply it."));
+        return ItemCreator.createItem(Material.ENCHANTED_BOOK, "&eEnchanted Book", Arrays.asList(" ", "&7Click with this item on a item you want to enchant."));
     }
 
     public static void enchantItem(EnchantmentType type, ItemStack itemStack) {
@@ -30,13 +30,12 @@ public class Enchanter {
             EnchantmentManager.addCustomEnchantment(itemStack, customEnchantment, integer);
         });
 
-        if(itemStack.getType() != Material.BOOK) return;
+        if(itemStack.getType() != Enchanter.getBookItem().getType()) return;
         ItemMeta meta = itemStack.getItemMeta();
         List<String> lore = meta.getLore();
         lore.addAll(Arrays.asList(" ", TextUtils.formatColorCodes("&9Can be applied to: " + Enchanter.enchantmentTargets(new ArrayList<>(addedEnchantments.keySet())))));
         meta.setLore(lore);
         itemStack.setItemMeta(meta);
-
     }
 
     public static String enchantmentTargets(CustomEnchantment enchantment) {
@@ -51,18 +50,18 @@ public class Enchanter {
     }
 
     public static String enchantmentTargets(List<CustomEnchantment> enchantments) {
-        String targets = "";
+        StringBuilder targets = new StringBuilder();
 
         for (CustomEnchantment customEnchantment : enchantments) {
             for (EnchantmentTarget target : customEnchantment.getTargets()) {
-                if(targets.contains(target.name())) continue;
                 String name = target.name().toLowerCase();
-                targets += (targets.equalsIgnoreCase("")) ? name : " , " + name;
+                if(targets.toString().contains(name)) continue;
+                targets.append((targets.toString().equalsIgnoreCase("")) ? name : " , " + name);
             }
         }
 
 
-        return targets;
+        return targets.toString();
     }
 
 

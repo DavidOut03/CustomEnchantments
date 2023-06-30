@@ -33,6 +33,6 @@ public class Haste extends CustomEnchantment {
         ItemStack newItem = e.getPlayer().getInventory().getItem(e.getNewSlot());
         if(EnchantmentManager.containsEnchantment(this, prevItem)) e.getPlayer().removePotionEffect(PotionEffectType.FAST_DIGGING);;
         if(!EnchantmentManager.containsEnchantment(this, newItem)) return;
-        e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, newItem.getEnchantments().get(this) - 1));
+        e.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.FAST_DIGGING, Integer.MAX_VALUE, newItem.getEnchantments().get(this) - 1));
     }
 }

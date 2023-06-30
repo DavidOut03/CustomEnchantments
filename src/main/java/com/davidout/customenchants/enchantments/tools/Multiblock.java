@@ -11,23 +11,37 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.player.PlayerItemDamageEvent;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Multiblock extends CustomEnchantment {
     public Multiblock() {
-        super(new EnchantmentDetails(  "multiblock", 2, "Mine a bigger area of blocks.", EnchantmentTarget.PICKAXE));
+        super(new EnchantmentDetails(  "multiblock", 2, "Mine a bigger area of blocks.", Arrays.asList(EnchantmentTarget.PICKAXE, EnchantmentTarget.SHOVEL)));
     }
 
     @Override
     public List<Class<? extends Event>> getEvents() {
-        return Collections.singletonList(BlockBreakEvent.class);
+        return Arrays.asList(BlockBreakEvent.class, PlayerItemDamageEvent.class);
     }
 
     @Override
     public void onAction(Event event) {
+        if(event instanceof PlayerItemDamageEvent) {
+            PlayerItemDamageEvent e = (PlayerItemDamageEvent) event;
+            if(!EnchantmentManager.containsEnchantment(this, e.getItem())) return;
+            Random random = new Random();
+            double percent = random.nextDouble() * 100;
+
+            if(percent < 35) return;
+            e.setCancelled(true);
+            e.setDamage(0);
+        }
+
         if(!(event instanceof BlockBreakEvent)) return;
         BlockBreakEvent blockBreakEvent = (BlockBreakEvent) event;
         Player player = blockBreakEvent.getPlayer();

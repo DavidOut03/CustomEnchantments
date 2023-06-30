@@ -33,7 +33,7 @@ public class AutoSmelt extends CustomEnchantment {
     };
 
     public AutoSmelt() {
-        super(new EnchantmentDetails(  "autosmelt", 1, "Smelts the ores automaticly when you mine a ore.", EnchantmentTarget.PICKAXE));
+        super(new EnchantmentDetails(  "autosmelt", 1, "Smelts the ores automaticly when you mine a ore.", Arrays.asList(EnchantmentTarget.PICKAXE, EnchantmentTarget.SHOVEL)));
     }
 
     @Override
@@ -68,6 +68,8 @@ public class AutoSmelt extends CustomEnchantment {
                 ItemStack stripped = new ItemStack(Material.valueOf("STRIPPED_" + itemStack.getType().name()));
                 itemStack = (stripped == null)? itemStack : stripped;
             }
+
+            if(itemStack.getType().name().endsWith("_SAND")) itemStack = new ItemStack(Material.GLASS, itemStack.getAmount());
 
             drops.add(itemStack);
         });

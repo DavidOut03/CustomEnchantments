@@ -1,5 +1,6 @@
 package com.davidout.customenchants.listener;
 
+import com.davidout.api.custom.enchantment.CustomEnchantment;
 import com.davidout.api.custom.enchantment.EnchantmentManager;
 import com.davidout.api.utillity.item.Item;
 import com.davidout.api.utillity.item.ItemCreator;
@@ -54,7 +55,7 @@ public class ClickListener implements Listener {
     @EventHandler(priority = EventPriority.HIGH)
     public void onClick(InventoryClickEvent event) {
         if(event.isCancelled() ||event.getCurrentItem() == null || event.getCursor() == null) return;
-        if(event.getCursor().getType() != Material.BOOK || event.getCursor().getEnchantments().isEmpty()) return;
+        if(event.getCursor().getType() != Enchanter.getBookItem().getType() || event.getCursor().getEnchantments().isEmpty()) return;
         if(event.getCurrentItem() == null || event.getCurrentItem().getType() == Material.AIR) return;
         event.setCancelled(true);
 
@@ -65,13 +66,14 @@ public class ClickListener implements Listener {
         for (Map.Entry<Enchantment, Integer> enchantmentIntegerEntry : event.getCursor().getEnchantments().entrySet()) {
             Enchantment enchantment = enchantmentIntegerEntry.getKey();
             int level = enchantmentIntegerEntry.getValue();
-            boolean enchanted = EnchantmentManager.addCustomEnchantment(set, enchantment, level);
+            CustomEnchantment customEnchantment = (CustomEnchantment) enchantment;
+
+            boolean enchanted = EnchantmentManager.addCustomEnchantment(set, customEnchantment, level);
             if(!enchanted) continue;
             worked = true;
         }
 
         if(!worked) return;
-
         event.setCursor(null);
         event.setCurrentItem(set);
     }
