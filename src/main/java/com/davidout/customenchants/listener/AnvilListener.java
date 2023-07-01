@@ -8,10 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.event.inventory.PrepareAnvilEvent;
-import org.bukkit.event.inventory.PrepareGrindstoneEvent;
+import org.bukkit.event.inventory.*;
 import org.bukkit.inventory.AnvilInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -24,11 +21,12 @@ import java.util.stream.Collectors;
 
 public class AnvilListener implements Listener {
 
+
     @EventHandler
     public void onGrind(PrepareGrindstoneEvent e) {
         ItemStack itemStack = e.getInventory().getItem(0);
         if(e.getResult() == null || itemStack == null || itemStack.getType() == Material.AIR) return;
-        if(!containsCustomEnchantments(itemStack)) return;
+        if(e.getInventory().getItem(0) != null && !containsCustomEnchantments(itemStack)) return;
         ItemStack results = e.getResult();
         ItemMeta meta = results.getItemMeta();
         if(meta == null) return;

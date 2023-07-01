@@ -22,6 +22,7 @@ import org.bukkit.inventory.meta.Damageable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class CustomEnchantmentManager {
 
@@ -57,30 +58,45 @@ public class CustomEnchantmentManager {
     public static void breakBlock(Block block, Player player, ItemStack tool) {
         if(block.getType().equals(Material.BEDROCK)) return;
         List<ItemStack> drops =  (EnchantmentManager.containsEnchantment(autoSmelt, tool))? AutoSmelt.breakItemWithAutoSmelt(block, player): new ArrayList<>(block.getDrops(tool));
-        block.setType(Material.AIR);
-
-        if(tool != null && !tool.getEnchantments().isEmpty() && tool.getEnchantments().containsKey(Enchantment.DURABILITY)) {
-            tool.setDurability((short) (tool.getDurability() + getUnbreakingDamage(tool.getEnchantments().get(Enchantment.DURABILITY))));
-        }
 
         if(EnchantmentManager.containsEnchantment(telepathy, tool)) {
             drops.forEach(itemStack -> Telepathy.teleportDropToInventory(block.getLocation(), itemStack, player));
             return;
         }
 
-       drops.forEach(itemStack ->  block.getWorld().dropItemNaturally(block.getLocation(), itemStack));
+
+        if(!block.getType().name().toUpperCase().contains("_LEAVE") && !block.getType().name().equalsIgnoreCase("AIR")) {
+            drops.forEach(itemStack ->  block.getWorld().dropItemNaturally(block.getLocation(), itemStack));
+            removeDurability(tool);
+        }
+
+
+        block.setType(Material.AIR);
     }
 
-    private static int getUnbreakingDamage(int unbreakingLevel) {
-        int durabilityDamage = 1;
+    private static void removeDurability(ItemStack itemStack) {
+        if(itemStack == null || !(itemStack.getItemMeta() instanceof Damageable)) return;
+        Damageable damageable = (Damageable) itemStack.getItemMeta();
 
-        if(unbreakingLevel <= 0) return durabilityDamage;
-            double reductionChance = 1.0 / (unbreakingLevel + 1);
-            if (Math.random() >= reductionChance) return durabilityDamage;
-                durabilityDamage--;
+        int level = (itemStack.getEnchantments().get(Enchantment.DURABILITY) == null) ? 0 : itemStack.getEnchantments().get(Enchantment.DURABILITY);
+        boolean remove = shouldRemoveDurrabillity(level);
+
+        System.out.println(level + " " + remove);
+        if(!remove) return;
+        int damage = damageable.getDamage();
+
+        System.out.println(damage);
+
+        damageable.setDamage(damage + 1);
+        itemStack.setItemMeta(damageable);
+    }
 
 
-        return durabilityDamage;
+    private static boolean shouldRemoveDurrabillity(int unbreakingLevel) {
+        if(unbreakingLevel <= 0) return true;
+            double reductionChance = 1.0 / (unbreakingLevel + 10);
+            double d = new Random().nextDouble();
+        return d <= reductionChance;
     }
 
 }
