@@ -81,12 +81,8 @@ public class CustomEnchantmentManager {
         int level = (itemStack.getEnchantments().get(Enchantment.DURABILITY) == null) ? 0 : itemStack.getEnchantments().get(Enchantment.DURABILITY);
         boolean remove = shouldRemoveDurrabillity(level);
 
-        System.out.println(level + " " + remove);
         if(!remove) return;
         int damage = damageable.getDamage();
-
-        System.out.println(damage);
-
         damageable.setDamage(damage + 1);
         itemStack.setItemMeta(damageable);
     }
